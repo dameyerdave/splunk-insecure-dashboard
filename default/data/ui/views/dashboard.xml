@@ -1,0 +1,26 @@
+<dashboard hideSplunkBar="true" hideAppBar="true" hideEdit="true" hideFilters="true" hideChrome="true" script="custom.js" stylesheet="custom.css">
+  <label>Dashboard without session timeout</label>
+  <row>
+    <panel>
+      <title>Latest Tweets</title>
+      <table id="myCustomTable">
+        <search>
+          <query>| mongo earliest="2018-11-22 13:00" limit=10 | table _time, user_profile_image_url, user_screen_name, text, entities_media_media_url</query>
+          <earliest>-4h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+          <refresh>30s</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">preview</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>
